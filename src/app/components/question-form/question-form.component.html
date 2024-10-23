@@ -1,0 +1,34 @@
+<div class="container">
+  <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+    <label for="subject">Subject</label>
+    <input id="subject" formControlName="subject" type="text" placeholder="Enter subject" />
+
+    <label for="topic">Topic</label>
+    <input id="topic" formControlName="topic" type="text" placeholder="Enter topic" />
+
+    <label for="exam">Exam (optional)</label>
+    <input id="exam" formControlName="exam" type="text" placeholder="Enter exam (if available)" />
+
+    <label for="text">Question Text</label>
+    <input id="text" formControlName="text" type="text" placeholder="Enter question" />
+
+    <label for="explanation">Explanation</label>
+    <input id="explanation" formControlName="explanation" type="text" placeholder="Enter explanation (optional)" />
+
+    <div formArrayName="options">
+      <div *ngFor="let option of options.controls; let i = index" [formGroupName]="i">
+        <label for="optionText">Option {{ i + 1 }}</label>
+        <input id="optionText" formControlName="text" type="text" placeholder="Option text" />
+
+        <label>
+          <input formControlName="isCorrect" type="checkbox" /> Is Correct
+        </label>
+
+        <button (click)="removeOption(i)" *ngIf="options.length > 1">Remove Option</button>
+      </div>
+    </div>
+
+    <button type="button" (click)="addOption()">Add Option</button>
+    <button type="submit" [disabled]="!questionForm.valid">Save Question</button>
+  </form>
+</div>

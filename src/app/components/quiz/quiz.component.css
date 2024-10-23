@@ -1,0 +1,180 @@
+/* Container for the quiz */
+.quiz-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Question block */
+.question-block {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Question header */
+h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Question text */
+p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Options container */
+.options {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Option block with labels (A, B, C, D) */
+.option-block {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+/* Option label (A, B, C, D) */
+.option-label {
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+/* Option button styles */
+button {
+  flex: 1;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: 2px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  outline: none;
+}
+
+/* Hover effect for option buttons */
+button:hover {
+  background-color: #007bff;
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Correct option styling */
+.correct-option {
+  background-color: #28a745;
+  color: white;
+  border-color: #28a745;
+  cursor: not-allowed;
+  box-shadow: 0px 2px 10px rgba(40, 167, 69, 0.5);
+}
+
+/* Incorrect option styling */
+.incorrect-option {
+  background-color: #dc3545;
+  color: white;
+  border-color: #dc3545;
+  cursor: not-allowed;
+  box-shadow: 0px 2px 10px rgba(220, 53, 69, 0.5);
+}
+
+/* Disabled option styling */
+.disabled-option {
+  background-color: #f0f0f0;
+  color: #999;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Feedback icons */
+.feedback {
+  font-size: 22px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+/* Incorrect feedback icon */
+.feedback-incorrect {
+  color: #dc3545;
+}
+
+/* Correct feedback icon */
+.feedback-correct {
+  color: #28a745;
+}
+
+/* Explanation block */
+.explanation {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #17a2b8; /* Blue for explanation */
+  background-color: #e9f7fc;
+  padding: 10px;
+  border-left: 5px solid #17a2b8;
+  border-radius: 5px;
+}
+
+/* Smooth transition for all changes */
+.option-block, button, .feedback {
+  transition: all 0.3s ease;
+}
+
+/* Loading state styling */
+.loading {
+  font-size: 18px;
+  text-align: center;
+  color: #007bff;
+}
+
+/* Quiz header */
+h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 30px;
+  color: #007bff;
+}
+
+.metadata-row {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.metadata-item {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.metadata-item i {
+  margin-right: 5px; /* Space between icon and text */
+}
+
+.metadata-item i.fa-book {
+  color: #4a90e2; /* Customize color for subject icon */
+}
+
+.metadata-item i.fa-tags {
+  color: #f5a623; /* Customize color for topic icon */
+}
+
+.metadata-item i.fa-file-alt {
+  color: #7ed321; /* Customize color for exam icon */
+}

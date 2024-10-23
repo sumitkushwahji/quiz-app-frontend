@@ -1,0 +1,64 @@
+<div class="quiz-container" *ngIf="questions.length > 0">
+  <div *ngFor="let question of questions; let i = index">
+    <div class="question-block">
+      <h3>Question {{ i + 1 }}</h3>
+      <p>{{ question.text }}</p>
+
+      <div class="options">
+        <div *ngFor="let option of question.options; let j = index" class="option-block">
+          <!-- Display option label A, B, C, D -->
+          <span class="option-label">{{ getOptionLabel(j) }}.</span>
+
+          <button
+            (click)="selectOption(question.id, option.id, option.isCorrect)"
+            [ngClass]="{
+              'correct-option': option.isCorrect && selectedOptions[question.id],
+              'incorrect-option': !option.isCorrect && selectedOptions[question.id] === option.id,
+              'disabled-option': isDisabled(question.id, option.id)
+            }"
+            [disabled]="isDisabled(question.id, option.id)">
+            {{ option.text }}
+          </button>
+
+          <!-- Feedback: Correct or Incorrect -->
+          <span *ngIf="selectedOptions[question.id] === option.id && !option.isCorrect" class="feedback feedback-incorrect">❌</span>
+          <span *ngIf="selectedOptions[question.id] === option.id && option.isCorrect" class="feedback feedback-correct">✅</span>
+        </div>
+      </div>
+
+      <!-- Explanation is shown after an option is selected -->
+      <div *ngIf="selectedOptions[question.id]" class="explanation">
+        <p>Explanation: {{ question.explanation || 'No explanation available' }}</p>
+      </div>
+
+      <!-- Subject, Topic, and Exam display -->
+      <div class="metadata">
+        <div class="metadata-row">
+          <!-- Icon for Subject -->
+          <span class="metadata-item">
+            <i class="fas fa-book"></i> <!-- FontAwesome icon for subject -->
+            {{ question.subject }}
+          </span>
+      
+          <!-- Icon for Topic -->
+          <span class="metadata-item">
+            <i class="fas fa-tags"></i> <!-- FontAwesome icon for topic -->
+            {{ question.topic }}
+          </span>
+      
+          <!-- Icon for Exam -->
+          <span class="metadata-item" *ngIf="question.exam">
+            <i class="fas fa-file-alt"></i> <!-- FontAwesome icon for exam -->
+            {{ question.exam }}
+          </span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<!-- Show a loading message if questions are not yet loaded -->
+<div *ngIf="questions.length === 0">
+  Loading questions...
+</div>
