@@ -1,0 +1,17 @@
+.about-section {
+    background-color: #f0f0f0;
+    padding: 24px;
+    border-radius: 8px;
+  }
+  
+  .quick-links {
+    margin-top: 16px;
+  }
+  
+  .quick-links a {
+    display: block;
+    margin-bottom: 8px;
+    color: #1976d2;
+    text-decoration: none;
+  }
+  
