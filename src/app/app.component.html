@@ -1,14 +1,26 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav mode="side" opened>
-      <app-sidebar></app-sidebar>
-    </mat-sidenav>
+  <!-- Sidebar -->
+  <mat-sidenav 
+    [mode]="isMobileView ? 'over' : 'side'" 
+    [(opened)]="sidebarOpened"
+    class="sidenav">
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
   
-    <mat-sidenav-content>
-      <app-header></app-header>
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
+  <!-- Main content -->
+  <mat-sidenav-content class="sidenav-content">
+    <!-- Toolbar with toggle button for sidebar -->
+    <mat-toolbar color="primary" class="toolbar">
+      <button mat-icon-button (click)="toggleSidebar()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="title">My Application</span>
+      <span class="spacer"></span>
+      <button mat-button>Signup</button>
+      <button mat-button>Login</button>
+    </mat-toolbar>
+    
+    <!-- Main content rendered here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>
-
-  
-<app-question-form></app-question-form>
-<app-quiz></app-quiz>

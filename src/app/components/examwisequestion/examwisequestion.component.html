@@ -1,0 +1,10 @@
+<mat-card class="exam-list-card">
+    <mat-card-title>Exam List</mat-card-title>
+    <mat-list>
+      <mat-list-item 
+        *ngFor="let exam of exams" 
+        (click)="onExamClick(exam)">
+        <h3 matLine>{{ exam }}</h3>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>

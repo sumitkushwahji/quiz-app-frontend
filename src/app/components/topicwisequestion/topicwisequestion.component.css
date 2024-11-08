@@ -1,0 +1,31 @@
+.topic-list-card {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 16px;
+  }
+  
+  mat-list-item {
+    background-color: #f1f1f1;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  mat-list-item h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  mat-list-item {
+    cursor: pointer;
+  }
+  
+  mat-list-item:hover {
+    background-color: #7cd198;
+  }
+  
+  .hovered {
+    background-color: #e3e3e3;
+    transition: background-color 0.3s ease-in-out;
+  }
+  

@@ -1,0 +1,10 @@
+<mat-card class="topic-list-card">
+    <mat-card-title>Topic List</mat-card-title>
+    <mat-list>
+      <mat-list-item 
+        *ngFor="let topic of topics" 
+        (click)="onTopicClick(topic)">
+        <h3 matLine>{{ topic }}</h3>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>

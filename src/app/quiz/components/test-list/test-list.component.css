@@ -1,0 +1,116 @@
+/* Main container for the page */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+  }
+  
+  /* Title styling */
+  .page-title {
+    font-size: 26px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  /* Test list container */
+  .test-list-container {
+    width: 100%;
+    max-width: 700px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .test-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Individual test item styling */
+  .test-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.3s ease;
+  }
+  
+  .test-list-item:hover {
+    background-color: #f0f8ff;
+  }
+  
+  .test-info h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #007bff;
+  }
+  
+  .test-info p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Styling for View Test button */
+  .view-test-button {
+    font-size: 14px;
+    color: white;
+    background-color: #007bff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .view-test-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Create New Test button container */
+  .create-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Styling for Create New Test button */
+  .create-test-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff4081;
+    color: white;
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .create-test-button:hover {
+    background-color: #e0306f;
+  }
+  
+  .plus-icon {
+    font-weight: bold;
+  }
+  
+  .create-text {
+    font-size: 16px;
+    font-weight: 500;
+    color: #757575;
+  }
+  

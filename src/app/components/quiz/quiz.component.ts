@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../../services/question.service';
 
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -12,19 +13,122 @@ import { CommonModule } from '@angular/common';
 })
 export class QuizComponent implements OnInit {
   questions: any[] = [];
-  selectedOptions: { [key: number]: number | null } = {}; // Tracks the selected option for each question
-  disabledOptions: { [key: number]: { [optionId: number]: boolean } } = {}; // Tracks disabled options
+  selectedOptions: { [key: number]: number | null } = {};
+  disabledOptions: { [key: number]: { [optionId: number]: boolean } } = {};
+  subject: string = '';
+  topic: string = '';
+  exam: string = '';
 
-  constructor(private questionService: QuestionService) {}
+  constructor(
+    private questionService: QuestionService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.fetchQuestions();
+    // Subscribe to route parameters
+    this.route.paramMap.subscribe((params) => {
+      this.subject = params.get('subject')!;
+      this.topic = params.get('topic')!;
+      this.exam = params.get('exam')!;
+
+      // Fetch questions based on parameters
+      this.fetchQuestions();
+    });
   }
 
   fetchQuestions(): void {
-    this.questionService.getQuestions().subscribe((questions) => {
+    if (this.subject || this.topic || this.exam) {
+      // If there are parameters, fetch based on them
+      this.fetchQuestionsByParams();
+    } else {
+      // If no parameters, fetch all questions
+      this.fetchAllQuestions();
+    }
+  }
+
+  fetchQuestionsByParams(): void {
+    if (this.subject && this.topic && this.exam) {
+      this.fetchQuestionsBySubjectTopicExam(
+        this.subject,
+        this.topic,
+        this.exam
+      );
+    } else if (this.subject && this.topic) {
+      this.fetchQuestionsBySubjectTopic(this.subject, this.topic);
+    } else if (this.subject && this.exam) {
+      this.fetchQuestionsBySubjectExam(this.subject, this.exam);
+    } else if (this.topic && this.exam) {
+      this.fetchQuestionsByTopicExam(this.topic, this.exam);
+    } else if (this.subject) {
+      this.fetchQuestionsBySubject(this.subject);
+    } else if (this.topic) {
+      this.fetchQuestionsByTopic(this.topic);
+    } else if (this.exam) {
+      this.fetchQuestionsByExam(this.exam);
+    }
+  }
+
+  fetchAllQuestions(): void {
+    // Fetch all questions when no parameters are passed
+    this.questionService.getAllQuestions().subscribe((questions) => {
       this.questions = questions;
     });
+  }
+
+  fetchQuestionsBySubject(subject: string): void {
+    this.questionService
+      .getQuestionsBySubject(subject)
+      .subscribe((questions) => {
+        this.questions = questions;
+      });
+  }
+
+  fetchQuestionsByTopic(topic: string): void {
+    this.questionService.getQuestionsByTopic(topic).subscribe((questions) => {
+      this.questions = questions;
+    });
+  }
+
+  fetchQuestionsByExam(exam: string): void {
+    this.questionService.getQuestionsByExam(exam).subscribe((questions) => {
+      this.questions = questions;
+    });
+  }
+
+  fetchQuestionsBySubjectTopic(subject: string, topic: string): void {
+    this.questionService
+      .getQuestionsBySubjectTopic(subject, topic)
+      .subscribe((questions) => {
+        this.questions = questions;
+      });
+  }
+
+  fetchQuestionsBySubjectExam(subject: string, exam: string): void {
+    this.questionService
+      .getQuestionsBySubjectExam(subject, exam)
+      .subscribe((questions) => {
+        this.questions = questions;
+      });
+  }
+
+  fetchQuestionsByTopicExam(topic: string, exam: string): void {
+    this.questionService
+      .getQuestionsByTopicExam(topic, exam)
+      .subscribe((questions) => {
+        this.questions = questions;
+      });
+  }
+
+  fetchQuestionsBySubjectTopicExam(
+    subject: string,
+    topic: string,
+    exam: string
+  ): void {
+    this.questionService
+      .getQuestionsBySubjectTopicExam(subject, topic, exam)
+      .subscribe((questions) => {
+        this.questions = questions;
+      });
   }
 
   selectOption(questionId: number, optionId: number, isCorrect: boolean): void {

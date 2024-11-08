@@ -1,0 +1,11 @@
+<mat-card class="subject-list-card">
+  <mat-card-title>Subject List</mat-card-title>
+  <mat-list>
+    <mat-list-item 
+      *ngFor="let subject of subjects" 
+      (click)="onSubjectClick(subject)"
+      [ngClass]="{ 'hovered': subject.isHovered }">
+      <h3 matLine>{{ subject }}</h3> <!-- Assuming subject has a 'name' property -->
+    </mat-list-item>
+  </mat-list>
+</mat-card>

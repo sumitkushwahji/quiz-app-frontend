@@ -1,5 +1,59 @@
-mat-nav-list a {
-    font-size: 16px;
-    padding: 12px 16px;
-  }
-  
+/* Logo styling */
+.logo {
+  width: 100px;
+  margin: 10px auto;
+  display: block;
+}
+
+/* Styling for the sidebar list items */
+mat-nav-list {
+  padding: 0;
+  background-color: #f5f5f5; /* Background color for sidebar */
+}
+
+/* List items */
+mat-list-item, a[mat-list-item] {
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333; /* Text color */
+  text-decoration: none;
+}
+
+mat-list-item:hover, a[mat-list-item]:hover {
+  background-color: #e0e0e0; /* Highlight color on hover */
+  cursor: pointer;
+}
+
+/* Dropdown Menu Styling */
+.mat-menu-panel {
+  background-color: #ffffff; /* Background color for dropdown */
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Shadow for dropdown */
+}
+
+/* Menu items in the dropdown */
+.mat-menu-item {
+  font-size: 15px;
+  padding: 8px 24px;
+  color: #333; /* Menu item text color */
+}
+
+.mat-menu-item:hover {
+  background-color: #e0e0e0; /* Menu item hover background */
+}
+
+/* Align the menu trigger icon */
+a[mat-list-item][matMenuTriggerFor="subjectMenu"] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Add an arrow icon next to the dropdown trigger */
+a[mat-list-item][matMenuTriggerFor="subjectMenu"]::after {
+  content: '▼'; /* Arrow down symbol */
+  font-size: 12px;
+  margin-left: 8px;
+  color: #888;
+}
