@@ -12,7 +12,22 @@ export class AttemptService {
 
   constructor(private http: HttpClient) {}
 
-  submitAttempt(attempt: Attempt): Observable<Result> {
-    return this.http.post<Result>(this.apiUrl, attempt);
+  startAttempt(attempt: Attempt): Observable<Attempt> {
+    return this.http.post<Attempt>(`${this.apiUrl}`, attempt);
+  }
+
+  // submitAttempt(id: number, attempt: Attempt): Observable<Attempt> {
+  //   return this.http.put<Attempt>(`${this.apiUrl}/${id}`, attempt);
+  // }
+
+  getAttemptsByTestId(testId: number): Observable<Attempt[]> {
+    return this.http.get<Attempt[]>(`${this.apiUrl}/${testId}`);
+  }
+
+  getAttemptById(id: number): Observable<Attempt> {
+    return this.http.get<Attempt>(`${this.apiUrl}/id/${id}`);
+  }
+  submitAttempt(attempt: Attempt): Observable<Attempt> {
+    return this.http.put<Attempt>(`${this.apiUrl}/${attempt.testId}`, attempt);
   }
 }

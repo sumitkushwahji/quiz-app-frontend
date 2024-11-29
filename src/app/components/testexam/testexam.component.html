@@ -1,0 +1,58 @@
+<div class="container">
+    <h2>Create Test</h2>
+  
+    <!-- Test Details Form -->
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Test Name</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="test.name" name="name" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" [(ngModel)]="test.description" name="description"></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" class="form-control" id="subject" [(ngModel)]="filters.subject" name="subject" />
+      </div>
+  
+      <div class="form-group">
+        <label for="topic">Topic</label>
+        <input type="text" class="form-control" id="topic" [(ngModel)]="filters.topic" name="topic" />
+      </div>
+  
+      <div class="form-group">
+        <label for="exam">Exam</label>
+        <input type="text" class="form-control" id="exam" [(ngModel)]="filters.exam" name="exam" />
+      </div>
+  
+      <div class="form-group">
+        <label for="difficulty">Difficulty</label>
+        <select class="form-control" id="difficulty" [(ngModel)]="filters.difficulty" name="difficulty">
+          <option value="">Any</option>
+          <option value="EASY">EASY</option>
+          <option value="MEDIUM">MEDIUM</option>
+          <option value="HARD">HARD</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="questionCount">Number of Questions</label>
+        <input type="number" class="form-control" id="questionCount" [(ngModel)]="test.questionCount" name="questionCount" required />
+      </div>
+  
+      <button type="button" class="btn btn-primary" (click)="fetchQuestions()">Fetch Questions</button>
+      <div *ngIf="questions.length > 0">
+        <h3>Available Questions</h3>
+        <div *ngFor="let question of questions" class="form-check">
+          <input type="checkbox" class="form-check-input" [value]="question" (change)="toggleQuestionSelection(question)" />
+          <label class="form-check-label">{{ question.text }}</label>
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-success mt-3">Create Test</button>
+    </form>
+  </div>
+  

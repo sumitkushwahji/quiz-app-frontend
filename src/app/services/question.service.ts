@@ -73,4 +73,8 @@ export class QuestionService {
       `${this.apiUrl}?subject=${subject}&topic=${topic}&exam=${exam}`
     );
   }
+
+  getFilteredQuestions(filters: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/filter`, { params: filters });
+  }
 }

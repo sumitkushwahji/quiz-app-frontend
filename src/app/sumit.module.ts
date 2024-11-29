@@ -14,6 +14,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
 import { RouterModule } from '@angular/router'; // Import RouterModule
 import { QuizRoutingModule } from './quiz/quiz-routing.module';
 
@@ -34,6 +35,7 @@ import { QuizRoutingModule } from './quiz/quiz-routing.module';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatRadioModule,
     RouterModule, // Add RouterModule here
     QuizRoutingModule,
     MatMenuModule,
@@ -57,6 +59,7 @@ import { QuizRoutingModule } from './quiz/quiz-routing.module';
     RouterModule, // Export RouterModule here
     QuizRoutingModule,
     MatMenuModule,
+    MatRadioModule,
     MatExpansionModule,
   ],
 })

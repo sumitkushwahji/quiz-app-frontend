@@ -1,20 +1,53 @@
 <div class="container">
   <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
-    <label for="subject">Subject</label>
-    <input id="subject" formControlName="subject" type="text" placeholder="Enter subject" />
 
-    <label for="topic">Topic</label>
-    <input id="topic" formControlName="topic" type="text" placeholder="Enter topic" />
+    <div class="form-row">
+      <div class="form-column">
+        <label for="subject">Subject</label>
+        <input id="subject" formControlName="subject" type="text" placeholder="Enter subject" />
+      </div>
 
-    <label for="exam">Exam (optional)</label>
-    <input id="exam" formControlName="exam" type="text" placeholder="Enter exam (if available)" />
+      <div class="form-column">
+        <label for="topic">Topic</label>
+        <input id="topic" formControlName="topic" type="text" placeholder="Enter topic" />
+      </div>
+    </div>
 
-    <label for="text">Question Text</label>
-    <input id="text" formControlName="text" type="text" placeholder="Enter question" />
+    <div class="form-row">
+      <div class="form-column">
+        <label for="exam">Exam (optional)</label>
+        <input id="exam" formControlName="exam" type="text" placeholder="Enter exam (if available)" />
+      </div>
+
+      <div class="form-column">
+        <label for="text">Question Text</label>
+        <input id="text" formControlName="text" type="text" placeholder="Enter question" />
+      </div>
+    </div>
+
+    <!-- New row for Question Type and Difficulty -->
+    <div class="form-row">
+      <div class="form-column">
+        <label for="questionType">Question Type</label>
+        <select id="questionType" formControlName="questionType">
+          <option value="" disabled>Select question type</option>
+          <option *ngFor="let type of questionTypes" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+
+      <div class="form-column">
+        <label for="difficulty">Difficulty</label>
+        <select id="difficulty" formControlName="difficulty">
+          <option value="" disabled>Select difficulty</option>
+          <option *ngFor="let level of difficulties" [value]="level">{{ level }}</option>
+        </select>
+      </div>
+    </div>
 
     <label for="explanation">Explanation</label>
     <input id="explanation" formControlName="explanation" type="text" placeholder="Enter explanation (optional)" />
 
+    <!-- Options section remains unchanged -->
     <div formArrayName="options">
       <div *ngFor="let option of options.controls; let i = index" [formGroupName]="i">
         <label for="optionText">Option {{ i + 1 }}</label>

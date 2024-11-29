@@ -1,5 +1,7 @@
 // question.model.ts
 
+import { Option } from './option.model'; // Import the Option interface
+
 export enum QuestionType {
   MULTIPLE_CHOICE = 'MULTIPLE_CHOICE',
   TRUE_FALSE = 'TRUE_FALSE',
@@ -16,9 +18,4 @@ export interface Question {
   questionType: QuestionType;
   difficulty: string;
   options: Option[];
-}
-
-export interface Option {
-  text: string;
-  isCorrect: boolean;
 }

@@ -6,6 +6,7 @@ import { SubjectwisequestionComponent } from './components/subjectwisequestion/s
 import { QuizComponent } from './components/quiz/quiz.component';
 import { ExamwisequestionComponent } from './components/examwisequestion/examwisequestion.component';
 import { TopicwisequestionComponent } from './components/topicwisequestion/topicwisequestion.component';
+import { TestexamComponent } from './components/testexam/testexam.component';
 
 export const routes: Routes = [
   { path: '', component: ContentComponent },
@@ -15,6 +16,7 @@ export const routes: Routes = [
   { path: 'subject-wise-questions', component: SubjectwisequestionComponent },
   { path: 'exam-wise-questions', component: ExamwisequestionComponent },
   { path: 'topic-wise-questions', component: TopicwisequestionComponent },
+  { path: 'test-exam', component: TestexamComponent },
   {
     path: 'users',
     loadChildren: () =>

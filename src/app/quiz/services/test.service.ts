@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Test } from '../models/test.model';
 
@@ -11,6 +11,7 @@ export class TestService {
 
   constructor(private http: HttpClient) {}
 
+  // Get all tests
   getTests(): Observable<Test[]> {
     return this.http.get<Test[]>(this.apiUrl);
   }
@@ -29,5 +30,23 @@ export class TestService {
 
   deleteTest(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+  createRandomTest(
+    subject: string,
+    topic: string,
+    exam: string,
+    numberOfQuestions: number
+  ): Observable<Test> {
+    // Construct the query parameters
+    const params = new HttpParams()
+      .set('subject', subject)
+      .set('topic', topic)
+      .set('exam', exam)
+      .set('numberOfQuestions', numberOfQuestions.toString()); // Make sure to convert number to string
+
+    // Send the GET request with query parameters
+    return this.http.post<Test>(`${this.apiUrl}/create-random`, null, {
+      params,
+    });
   }
 }

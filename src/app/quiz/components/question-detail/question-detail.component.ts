@@ -48,7 +48,7 @@ export class QuestionDetailComponent implements OnInit {
 
   addOption(): void {
     // Add a new option with default values
-    this.question.options.push({ text: '', isCorrect: false });
+    this.question.options.push({ id: 0, text: '', isCorrect: false });
   }
 
   removeOption(index: number): void {

@@ -19,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class QuestionFormComponent {
   questionForm: FormGroup;
+  questionTypes = ['MULTIPLE_CHOICE', 'TRUE_FALSE', 'SHORT_ANSWER'];
+  difficulties = ['EASY', 'MEDIUM', 'HARD'];
 
   constructor(
     private fb: FormBuilder,
@@ -30,6 +32,8 @@ export class QuestionFormComponent {
       exam: [''], // Added exam (optional)
       text: ['', Validators.required],
       explanation: [''],
+      questionType: ['', Validators.required],
+      difficulty: ['', Validators.required],
       options: this.fb.array([this.createOption()]), // Initialize with one option
     });
   }

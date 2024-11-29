@@ -14,7 +14,7 @@ export class QuestionService {
 
   // Get all questions for a specific test
   getQuestionsByTestId(testId: number): Observable<Question[]> {
-    return this.http.get<Question[]>(`${this.baseUrl}/test/${testId}`);
+    return this.http.get<Question[]>(`${this.baseUrl}/${testId}`);
   }
 
   // Get a specific question by ID
