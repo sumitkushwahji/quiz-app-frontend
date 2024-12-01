@@ -26,7 +26,7 @@ export class TestexamComponent {
   testDetails = {
     name: '',
     description: '',
-    duration: 0, // Add duration here
+    duration: 0, // Duration in minutes
   };
 
   numberOfRandomQuestions = 0;
@@ -132,7 +132,6 @@ export class TestexamComponent {
         subject,
         topic,
         exam,
-        numberOfQuestions: this.numberOfRandomQuestions.toString(),
       })
       .subscribe((data) => {
         // Update the list of available questions
@@ -141,13 +140,31 @@ export class TestexamComponent {
         // Reset selected questions
         this.selectedQuestions = {};
 
+        // Ensure number of random questions doesn't exceed the available questions
+        const numberToSelect = Math.min(
+          this.numberOfRandomQuestions,
+          this.questions.length
+        );
+
+        // Randomly select questions
+        const randomQuestions = this.getRandomQuestions(
+          this.questions,
+          numberToSelect
+        );
+
         // Mark random questions as selected
-        this.questions.forEach((question) => {
-          this.selectedQuestions[question.id] = true; // Set the selected state to true
+        randomQuestions.forEach((question) => {
+          this.selectedQuestions[question.id] = true;
         });
 
         // You don't need to do anything for selectedQuestionCount because the getter will automatically reflect the count
       });
+  }
+
+  // Helper function to get a random subset of questions
+  getRandomQuestions(questions: any[], numberToSelect: number): any[] {
+    const shuffled = [...questions].sort(() => 0.5 - Math.random()); // Shuffle the questions randomly
+    return shuffled.slice(0, numberToSelect); // Return the first 'numberToSelect' questions
   }
 
   // Create a test using selected questions
