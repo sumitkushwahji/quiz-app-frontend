@@ -1,6 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { QuestionType } from '../models/question-type.enum';
+
+export interface Question {
+  id: number;
+  text: string;
+  subject: string;
+  topic: string;
+  exam: string;
+  difficulty: string;
+  questionType: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +27,23 @@ export class QuestionService {
   }
 
   // Fetch all questions
-  getAllQuestions(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  getAllQuestions(
+    subject?: string,
+    topic?: string,
+    exam?: string,
+    difficulty?: string,
+    questionType?: QuestionType // Optional filter for questionType
+  ): Observable<any[]> {
+    let params = new HttpParams();
+
+    // Add filters to the params if they are provided
+    if (subject) params = params.set('subject', subject);
+    if (topic) params = params.set('topic', topic);
+    if (exam) params = params.set('exam', exam);
+    if (difficulty) params = params.set('difficulty', difficulty);
+    if (questionType) params = params.set('questionType', questionType); // Add questionType filter
+
+    return this.http.get<any[]>(this.apiUrl, { params }); // Pass the params to the HTTP request
   }
 
   // fetch unique subjects
@@ -74,7 +100,9 @@ export class QuestionService {
     );
   }
 
-  getFilteredQuestions(filters: any): Observable<any> {
-    return this.http.get(`${this.apiUrl}/filter`, { params: filters });
+  getFilteredQuestions(filters: any = {}): Observable<any> {
+    // Use HttpParams to handle filters properly
+    const params = new HttpParams({ fromObject: filters });
+    return this.http.get(`${this.apiUrl}/filter`, { params });
   }
 }

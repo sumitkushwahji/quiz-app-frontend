@@ -16,7 +16,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { RouterModule } from '@angular/router'; // Import RouterModule
-import { QuizRoutingModule } from './quiz/quiz-routing.module';
 
 @NgModule({
   declarations: [],
@@ -37,7 +36,6 @@ import { QuizRoutingModule } from './quiz/quiz-routing.module';
     MatInputModule,
     MatRadioModule,
     RouterModule, // Add RouterModule here
-    QuizRoutingModule,
     MatMenuModule,
     MatExpansionModule,
   ],
@@ -57,7 +55,6 @@ import { QuizRoutingModule } from './quiz/quiz-routing.module';
     MatFormFieldModule,
     MatInputModule,
     RouterModule, // Export RouterModule here
-    QuizRoutingModule,
     MatMenuModule,
     MatRadioModule,
     MatExpansionModule,

@@ -1,9 +1,0 @@
-<div class="test-list">
-  <h2>Available Tests</h2>
-  <ul>
-    <li *ngFor="let test of tests">
-      <span>{{ test.testName }} ({{ test.questions }} questions)</span>
-      <button (click)="startTest(test.id)">Start Test</button>
-    </li>
-  </ul>
-</div>

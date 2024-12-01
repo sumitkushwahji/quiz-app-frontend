@@ -1,23 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionService } from '../../services/question.service';
-
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { QuestionService } from '../../services/question.service';
+import { QuestionType } from '../../models/question-type.enum';
 
 @Component({
   selector: 'app-quiz',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './quiz.component.html',
-  styleUrl: './quiz.component.css',
+  styleUrls: ['./quiz.component.css'], // Fixed typo: styleUrl -> styleUrls
 })
 export class QuizComponent implements OnInit {
-  questions: any[] = [];
-  selectedOptions: { [key: number]: number | null } = {};
-  disabledOptions: { [key: number]: { [optionId: number]: boolean } } = {};
+  questions: any[] = []; // Array to hold questions fetched from the service
+  selectedOptions: { [key: number]: number | null } = {}; // Track selected options
+  disabledOptions: { [key: number]: { [optionId: number]: boolean } } = {}; // Track disabled options for incorrect answers
+
+  // Filters from route parameters
   subject: string = '';
   topic: string = '';
   exam: string = '';
+  selectedQuestionType: QuestionType = QuestionType.MULTIPLE_CHOICE; // Default question type
 
   constructor(
     private questionService: QuestionService,
@@ -25,124 +28,42 @@ export class QuizComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Subscribe to route parameters
+    // Subscribe to route parameters to fetch filters dynamically
     this.route.paramMap.subscribe((params) => {
-      this.subject = params.get('subject')!;
-      this.topic = params.get('topic')!;
-      this.exam = params.get('exam')!;
-
-      // Fetch questions based on parameters
-      this.fetchQuestions();
+      this.subject = params.get('subject') || ''; // Handle optional parameters
+      this.topic = params.get('topic') || '';
+      this.exam = params.get('exam') || '';
+      this.fetchQuestions(); // Fetch questions with updated filters
     });
   }
 
+  // Fetch questions with optional filters
   fetchQuestions(): void {
-    if (this.subject || this.topic || this.exam) {
-      // If there are parameters, fetch based on them
-      this.fetchQuestionsByParams();
-    } else {
-      // If no parameters, fetch all questions
-      this.fetchAllQuestions();
-    }
-  }
-
-  fetchQuestionsByParams(): void {
-    if (this.subject && this.topic && this.exam) {
-      this.fetchQuestionsBySubjectTopicExam(
-        this.subject,
-        this.topic,
-        this.exam
-      );
-    } else if (this.subject && this.topic) {
-      this.fetchQuestionsBySubjectTopic(this.subject, this.topic);
-    } else if (this.subject && this.exam) {
-      this.fetchQuestionsBySubjectExam(this.subject, this.exam);
-    } else if (this.topic && this.exam) {
-      this.fetchQuestionsByTopicExam(this.topic, this.exam);
-    } else if (this.subject) {
-      this.fetchQuestionsBySubject(this.subject);
-    } else if (this.topic) {
-      this.fetchQuestionsByTopic(this.topic);
-    } else if (this.exam) {
-      this.fetchQuestionsByExam(this.exam);
-    }
-  }
-
-  fetchAllQuestions(): void {
-    // Fetch all questions when no parameters are passed
-    this.questionService.getAllQuestions().subscribe((questions) => {
-      this.questions = questions;
+    this.questionService.getFilteredQuestions().subscribe({
+      next: (questions) => {
+        this.questions = questions; // Update questions array
+      },
+      error: (error) => {
+        console.error('Error fetching questions:', error); // Log errors
+      },
     });
   }
 
-  fetchQuestionsBySubject(subject: string): void {
-    this.questionService
-      .getQuestionsBySubject(subject)
-      .subscribe((questions) => {
-        this.questions = questions;
-      });
-  }
-
-  fetchQuestionsByTopic(topic: string): void {
-    this.questionService.getQuestionsByTopic(topic).subscribe((questions) => {
-      this.questions = questions;
-    });
-  }
-
-  fetchQuestionsByExam(exam: string): void {
-    this.questionService.getQuestionsByExam(exam).subscribe((questions) => {
-      this.questions = questions;
-    });
-  }
-
-  fetchQuestionsBySubjectTopic(subject: string, topic: string): void {
-    this.questionService
-      .getQuestionsBySubjectTopic(subject, topic)
-      .subscribe((questions) => {
-        this.questions = questions;
-      });
-  }
-
-  fetchQuestionsBySubjectExam(subject: string, exam: string): void {
-    this.questionService
-      .getQuestionsBySubjectExam(subject, exam)
-      .subscribe((questions) => {
-        this.questions = questions;
-      });
-  }
-
-  fetchQuestionsByTopicExam(topic: string, exam: string): void {
-    this.questionService
-      .getQuestionsByTopicExam(topic, exam)
-      .subscribe((questions) => {
-        this.questions = questions;
-      });
-  }
-
-  fetchQuestionsBySubjectTopicExam(
-    subject: string,
-    topic: string,
-    exam: string
-  ): void {
-    this.questionService
-      .getQuestionsBySubjectTopicExam(subject, topic, exam)
-      .subscribe((questions) => {
-        this.questions = questions;
-      });
-  }
-
+  // Handle option selection for a question
   selectOption(questionId: number, optionId: number, isCorrect: boolean): void {
     if (isCorrect) {
-      this.selectedOptions[questionId] = optionId;
+      this.selectedOptions[questionId] = optionId; // Correct option selected
     } else {
+      // Disable incorrect option
       if (!this.disabledOptions[questionId]) {
         this.disabledOptions[questionId] = {};
       }
-      this.disabledOptions[questionId][optionId] = true;
-      this.selectedOptions[questionId] = optionId; // Track incorrect selection
+      this.disabledOptions[questionId][optionId] = true; // Mark option as disabled
+      this.selectedOptions[questionId] = optionId; // Track the selected (incorrect) option
     }
   }
 
+  // Check if a specific option is disabled for a question
   isDisabled(questionId: number, optionId: number): boolean {
     return (
       this.disabledOptions[questionId] &&
@@ -150,16 +71,24 @@ export class QuizComponent implements OnInit {
     );
   }
 
+  // Check if the selected option is correct for a question
   isCorrect(questionId: number): boolean | undefined {
     const selectedOptionId = this.selectedOptions[questionId];
-    const selectedOption = this.questions
-      .find((q) => q.id === questionId)
-      ?.options.find((o: any) => o.id === selectedOptionId);
+    const question = this.questions.find((q) => q.id === questionId);
+    const selectedOption = question?.options.find(
+      (o: any) => o.id === selectedOptionId
+    );
     return selectedOption?.isCorrect;
   }
 
-  // Helper to generate option labels: A, B, C, D
+  // Generate labels for options (e.g., A, B, C, D)
   getOptionLabel(index: number): string {
-    return String.fromCharCode(65 + index); // 'A' corresponds to 65 in ASCII, 'B' is 66, etc.
+    return String.fromCharCode(65 + index); // ASCII: A = 65, B = 66, etc.
+  }
+
+  // Handle changes in the selected question type
+  onQuestionTypeChange(newType: QuestionType): void {
+    this.selectedQuestionType = newType; // Update selected question type
+    this.fetchQuestions(); // Re-fetch questions based on the new type
   }
 }

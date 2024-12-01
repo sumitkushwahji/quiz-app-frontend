@@ -17,16 +17,7 @@ export const routes: Routes = [
   { path: 'exam-wise-questions', component: ExamwisequestionComponent },
   { path: 'topic-wise-questions', component: TopicwisequestionComponent },
   { path: 'test-exam', component: TestexamComponent },
-  {
-    path: 'users',
-    loadChildren: () =>
-      import('./user/user-routing.module').then((m) => m.UserRoutingModule),
-  },
-  {
-    path: 'quiz',
-    loadChildren: () =>
-      import('./quiz/quiz-routing.module').then((m) => m.QuizRoutingModule),
-  },
+
   {
     path: '**',
     redirectTo: '',
