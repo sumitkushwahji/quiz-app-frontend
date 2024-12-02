@@ -30,4 +30,12 @@ export class TestService {
 
     return this.http.post(`${this.baseUrl}/create`, testData, { headers });
   }
+
+  getAllTests(): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl);
+  }
+
+  getTestById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${id}`);
+  }
 }

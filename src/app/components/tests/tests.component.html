@@ -1,0 +1,23 @@
+<!-- Display list of all tests in a grid -->
+<div class="test-grid">
+    <div *ngFor="let test of tests" class="test-card">
+      <div class="card">
+        <div class="card-header">
+          <h3>{{ test.name }}</h3>
+        </div>
+        <div class="card-body">
+          <p><strong>Description:</strong> {{ test.description }}</p>
+          <p><strong>Subject:</strong> {{ test.subject }}</p>
+          <p><strong>Topic:</strong> {{ test.topic }}</p>
+          <p><strong>Exam:</strong> {{ test.exam }}</p>
+          <p><strong>Difficulty:</strong> {{ test.difficulty }}</p>
+          <p><strong>Duration:</strong> {{ test.duration }} minutes</p>
+          <p><strong>Start Time:</strong> {{ test.startTime | date: 'short' }}</p>
+          <p><strong>End Time:</strong> {{ test.endTime | date: 'short' }}</p>
+          <p><strong>Created Date:</strong> {{ test.createdDate | date: 'short' }}</p>
+          <p><strong>Question Count:</strong> {{ test.questionCount }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

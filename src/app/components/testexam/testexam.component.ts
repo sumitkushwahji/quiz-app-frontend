@@ -191,6 +191,7 @@ export class TestexamComponent {
       ...this.testDetails,
       duration: this.testDetails.duration, // Send duration to the backend
       questions: selectedQuestionObjects,
+      questionCount: this.selectedQuestionCount,
       difficulty: this.filters['difficulty'],
       subject: this.filters['subject'],
       topic: this.filters['topic'],

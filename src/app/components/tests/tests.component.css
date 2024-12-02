@@ -1,0 +1,65 @@
+/* The container that holds the grid of test cards */
+.test-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Gap between cards */
+    padding: 20px;
+  }
+  
+  /* Style for each individual card */
+  .test-card {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .test-card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+  }
+  
+  /* Card Header */
+  .card-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    font-size: 1.2em;
+    text-align: center;
+  }
+  
+  /* Card Body */
+  .card-body {
+    padding: 15px;
+    font-size: 1em;
+  }
+  
+  .card-body p {
+    margin: 8px 0;
+  }
+  
+  .card-body strong {
+    color: #007bff;
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .test-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+  
+    .card-header {
+      font-size: 1.1em;
+    }
+  
+    .card-body {
+      font-size: 0.9em;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .test-grid {
+      grid-template-columns: 1fr; /* Single column layout on small screens */
+    }
+  }
+  
