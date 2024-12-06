@@ -1,0 +1,56 @@
+<div class="container mt-4 text-center">
+    <h2>Test Result</h2>
+    <p>Your score: <strong>{{ score }}</strong></p>
+  
+    <!-- Display message based on score -->
+    <div *ngIf="score === 0">
+      <p>Don't worry, keep practicing to improve your score!</p>
+    </div>
+  
+    <div *ngIf="score > 0 && score < 50" class="low-score-message">
+      <p>Good effort! Keep learning and try again to improve further!</p>
+    </div>
+  
+    <div *ngIf="score >= 50 && score < 80" class="medium-score-message">
+      <p>Well done! You're getting there!</p>
+    </div>
+  
+    <div *ngIf="score >= 80" class="high-score-message">
+      <p>Excellent! You're a quiz master!</p>
+    </div>
+  
+    
+    <button (click)="toggleReview()">View Detailed Review</button>
+  
+    <div *ngIf="showReview" class="review-container">
+      <h2>Review</h2>
+      <div *ngFor="let question of result">
+        <div class="question-container">
+          <p><strong>{{ question.questionText }}</strong></p>
+  
+          <!-- Display options with correct and user-selected answers -->
+          <ul>
+            <li
+              *ngFor="let option of question.options"
+              [ngClass]="{
+                correct: option.id === question.correctAnswer,
+                selected: option.id === question.userAnswer
+              }"
+            >
+              {{ option.text }}
+            </li>
+          </ul>
+  
+          <!-- Display the user-selected answer and correct answer -->
+          <div class="answer-details">
+            <p><strong>Your answer:</strong> {{ question.userAnswerText }}</p>
+            <p><strong>Correct answer:</strong> {{ question.correctAnswerText }}</p>
+          </div>
+  
+          <!-- Display the explanation -->
+          <p><strong>Explanation:</strong> {{ question.explanation }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

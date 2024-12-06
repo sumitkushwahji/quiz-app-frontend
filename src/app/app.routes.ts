@@ -8,6 +8,8 @@ import { ExamwisequestionComponent } from './components/examwisequestion/examwis
 import { TopicwisequestionComponent } from './components/topicwisequestion/topicwisequestion.component';
 import { TestexamComponent } from './components/testexam/testexam.component';
 import { TestsComponent } from './components/tests/tests.component';
+import { AttemptComponent } from './components/attempt/attempt.component';
+import { ResultComponent } from './components/result/result.component';
 
 export const routes: Routes = [
   { path: '', component: ContentComponent },
@@ -19,6 +21,8 @@ export const routes: Routes = [
   { path: 'topic-wise-questions', component: TopicwisequestionComponent },
   { path: 'test-exam', component: TestexamComponent },
   { path: 'test-list', component: TestsComponent },
+  { path: 'attempt/:id', component: AttemptComponent },
+  { path: 'result/:id', component: ResultComponent },
 
   {
     path: '**',

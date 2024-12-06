@@ -1,0 +1,130 @@
+/* Overall Container */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  /* Test Header */
+  h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+  }
+  
+  p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    color: #666;
+  }
+  
+  /* Timer Container */
+  .timer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    border: 2px solid #17a2b8;
+    padding: 10px 30px;
+    border-radius: 50px;
+    background-color: #17a2b8; /* Light blue background */
+    width: fit-content;
+    margin: 20px auto; /* Center the container */
+  }
+  
+  /* Timer Text */
+  .timer-text {
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
+  }
+  
+  /* Question Style */
+  h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Option List */
+  .list-group {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .list-group-item {
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .list-group-item:hover {
+    background-color: #17a2b8;
+    color: white;
+  }
+  
+  label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Radio Button Styling */
+  input[type='radio'] {
+    margin-right: 10px;
+  }
+  
+  /* Submit Button */
+  button {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #28a745;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #218838;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .container {
+      padding: 15px;
+    }
+  
+    h2 {
+      font-size: 24px;
+    }
+  
+    h4 {
+      font-size: 18px;
+    }
+  
+    .timer-container {
+      font-size: 20px;
+    }
+  
+    button {
+      font-size: 16px;
+      padding: 10px 25px;
+    }
+  }
+  
