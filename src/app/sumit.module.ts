@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Angular Material modules
@@ -39,6 +39,7 @@ import { RouterModule } from '@angular/router'; // Import RouterModule
     MatMenuModule,
     MatExpansionModule,
   ],
+
   exports: [
     CommonModule,
     FormsModule,
