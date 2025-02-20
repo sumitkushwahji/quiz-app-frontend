@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SumitModule } from '../../sumit.module';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,4 +9,10 @@ import { SumitModule } from '../../sumit.module';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  constructor(private authService: AuthService) {}
+
+  logout() {
+    this.authService.logout();
+  }
+}

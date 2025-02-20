@@ -11,9 +11,16 @@ import { TestsComponent } from './components/tests/tests.component';
 import { AttemptComponent } from './components/attempt/attempt.component';
 import { ResultComponent } from './components/result/result.component';
 import { AdminStatisticsComponent } from './components/admin-statistics/admin-statistics.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 export const routes: Routes = [
-  { path: '', component: ContentComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  // { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+
+  { path: 'dashboard', component: ContentComponent },
   { path: 'quiz/:subject/:topic/:exam', component: QuizComponent },
 
   { path: 'add-question', component: QuestionFormComponent },

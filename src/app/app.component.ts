@@ -6,6 +6,8 @@ import { SumitModule } from './sumit.module';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { isPlatformBrowser } from '@angular/common';
+import { AuthService } from './auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +28,11 @@ export class AppComponent {
   sidebarOpened: boolean = true;
   isMobileView: boolean = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -65,5 +71,10 @@ export class AppComponent {
   toggleSidebar() {
     this.sidebarOpened = !this.sidebarOpened;
     console.log('Sidebar toggled, now opened:', this.sidebarOpened);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']); // Redirect to login page
   }
 }
