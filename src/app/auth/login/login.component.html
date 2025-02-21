@@ -1,14 +1,33 @@
 <div class="login-container">
-    <h2>Login</h2>
-    <form (submit)="login()">
-      <label>Username</label>
-      <input type="text" [(ngModel)]="credentials.username" name="username" required />
-  
-      <label>Password</label>
-      <input type="password" [(ngModel)]="credentials.password" name="password" required />
-  
-      <button type="submit">Login</button>
-    </form>
-    <p *ngIf="errorMessage">{{ errorMessage }}</p>
-  </div>
-  
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>
+        <h2>Login</h2>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form (submit)="login()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username</mat-label>
+          <mat-icon matPrefix>person</mat-icon>
+          <input matInput type="text" [(ngModel)]="credentials.username" name="username" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="credentials.password" name="password" required />
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="full-width">Login</button>
+      </form>
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+    </mat-card-content>
+    <mat-card-actions class="register-link">
+      <a href="/signup">Don't have an account? Sign up</a>
+    </mat-card-actions>
+  </mat-card>
+</div>

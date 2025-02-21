@@ -13,12 +13,13 @@ import { SumitModule } from '../../sumit.module';
 export class LoginComponent {
   credentials = { username: '', password: '' };
   errorMessage = '';
+  hidePassword: any;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   login() {
     this.authService.login(this.credentials).subscribe({
-      next: () => this.router.navigate(['/dashboard']), // Redirect after login
+      next: () => this.router.navigate(['/home']), // Redirect after login
       error: (err) => (this.errorMessage = 'Invalid credentials'),
     });
   }

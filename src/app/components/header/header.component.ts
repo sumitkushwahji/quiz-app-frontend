@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { SumitModule } from '../../sumit.module';
 import { AuthService } from '../../auth/auth.service';
 
@@ -10,9 +10,14 @@ import { AuthService } from '../../auth/auth.service';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  constructor(private authService: AuthService) {}
+  @Output() toggleSidebar = new EventEmitter<void>();
+  @Output() logout = new EventEmitter<void>();
 
-  logout() {
-    this.authService.logout();
+  onToggleSidebar() {
+    this.toggleSidebar.emit();
+  }
+
+  onLogout() {
+    this.logout.emit();
   }
 }
