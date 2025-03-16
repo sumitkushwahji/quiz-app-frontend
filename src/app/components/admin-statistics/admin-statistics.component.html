@@ -1,0 +1,40 @@
+<!-- Stats Cards -->
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+    <mat-card *ngFor="let stat of statsCards" class="stat-card" style="flex-basis: 30%; margin-bottom: 20px;">
+      <mat-card-header>
+        <mat-card-title>{{ stat.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h2>{{ stat.value }}</h2>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+  <!-- Bar Chart for Statistics -->
+  <!-- <mat-card style="margin-top: 20px;">
+    <mat-card-header>
+      <mat-card-title>Test Statistics</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div style="height: 400px;">
+        <canvas baseChart
+                [datasets]="barChartData.datasets"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="true"
+                [chartType]="'bar'">
+        </canvas>
+      </div>
+    </mat-card-content>
+  </mat-card> -->
+  
+  <!-- Average Test Score -->
+  <mat-card style="margin-top: 20px;">
+    <mat-card-header>
+      <mat-card-title>Average Test Score</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <h3>{{ stats.averageTestScore | number: '1.2-2' }}</h3>
+    </mat-card-content>
+  </mat-card>
+  

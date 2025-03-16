@@ -1,7 +1,10 @@
 <mat-toolbar color="primary" class="toolbar">
-    <span class="title">My Application</span>
-    <span class="spacer"></span>
-    <button mat-button>Signup</button>
-    <button mat-button>Login</button>
-  </mat-toolbar>
-  
+  <button mat-icon-button (click)="onToggleSidebar()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="title">My Application</span>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/signup">Signup</button>
+  <button mat-button routerLink="/login">Login</button>
+  <button mat-button (click)="onLogout()">Logout</button>
+</mat-toolbar>
