@@ -19,7 +19,7 @@ export class LoginComponent {
 
   login() {
     this.authService.login(this.credentials).subscribe({
-      next: () => this.router.navigate(['/home']), // Redirect after login
+      next: () => this.router.navigate(['/dashboard']), // Redirect after login
       error: (err) => (this.errorMessage = 'Invalid credentials'),
     });
   }

@@ -1,0 +1,42 @@
+/* Image sliding from bottom */
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .slide-up {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    animation: slideUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Flexbox for videos */
+  .video-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .video-container iframe {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+  }
+  

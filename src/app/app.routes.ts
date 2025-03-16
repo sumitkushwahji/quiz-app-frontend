@@ -15,6 +15,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LandingComponent } from './landing/landing/landing.component';
 import { LayoutComponent } from './layout/layout/layout.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { FileuploadComponent } from './components/fileupload/fileupload.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -25,6 +27,7 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: 'home', component: ContentComponent },
+      { path: 'dashboard', component: DashboardComponent },
       { path: 'quiz/:subject/:topic/:exam', component: QuizComponent },
       { path: 'add-question', component: QuestionFormComponent },
       {
@@ -38,6 +41,7 @@ export const routes: Routes = [
       { path: 'attempt/:id', component: AttemptComponent },
       { path: 'result/:id', component: ResultComponent },
       { path: 'statistics', component: AdminStatisticsComponent },
+      { path: 'upload', component: FileuploadComponent },
     ],
   },
   { path: '**', redirectTo: '' }, // Redirect unknown paths to Landing
