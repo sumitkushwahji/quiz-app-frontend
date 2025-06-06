@@ -1,0 +1,65 @@
+<!-- PDF Upload -->
+<input type="file" (change)="uploadFile($event)" />
+
+<!-- Display Extracted Questions -->
+<div class="scroll-container">
+  <form *ngFor="let form of questionForms; let i = index" [formGroup]="form">
+    <h3>Question {{ i + 1 }}</h3>
+
+    <div class="form-row">
+      <label>Subject</label>
+      <select formControlName="subject">
+        <option *ngFor="let sub of subjects" [value]="sub">{{ sub }}</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label>Topic</label>
+      <input formControlName="topic" type="text" placeholder="Enter topic" />
+    </div>
+
+    <div class="form-row">
+      <label>Exam (optional)</label>
+      <input formControlName="exam" type="text" placeholder="Enter exam (if available)" />
+    </div>
+
+    <div class="form-row">
+      <label>Question Text</label>
+      <input formControlName="text" type="text" placeholder="Enter question" />
+    </div>
+
+    <div class="form-row">
+      <label>Question Type</label>
+      <select formControlName="questionType">
+        <option *ngFor="let type of questionTypes" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label>Difficulty</label>
+      <select formControlName="difficulty">
+        <option *ngFor="let level of difficulties" [value]="level">{{ level }}</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label>Explanation</label>
+      <input formControlName="explanation" type="text" placeholder="Enter explanation (optional)" />
+    </div>
+
+    <div formArrayName="options">
+      <div *ngFor="let option of getOptions(form).controls; let j = index" [formGroupName]="j">
+        <label>Option {{ j + 1 }}</label>
+        <input formControlName="text" type="text" placeholder="Option text" />
+        <label>
+          <input formControlName="isCorrect" type="checkbox" /> Is Correct
+        </label>
+        <button (click)="removeOption(form, j)" *ngIf="getOptions(form).length > 1">Remove Option</button>
+      </div>
+    </div>
+
+    <button type="button" (click)="addOption(form)">Add Option</button>
+  </form>
+</div>
+
+<button (click)="saveAllQuestions()">Save All Questions</button>

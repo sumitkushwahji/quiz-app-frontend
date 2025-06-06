@@ -18,6 +18,7 @@ export interface Question {
 })
 export class QuestionService {
   private apiUrl = 'http://localhost:8082/api/questions'; // Your Spring Boot API URL
+  private baseUrl = 'http://localhost:8082/api'; // Your Spring Boot API URL
 
   constructor(private http: HttpClient) {}
 
@@ -26,6 +27,13 @@ export class QuestionService {
     return this.http.post(this.apiUrl, question);
   }
 
+  uploadPdf(formData: FormData): Observable<any> {
+    return this.http.post(`${this.baseUrl}/upload/files`, formData);
+  }
+
+  saveAllQuestions(questions: any[]): Observable<any> {
+    return this.http.post(`${this.apiUrl}/saveAll`, questions);
+  }
   // Fetch all questions
   getAllQuestions(
     subject?: string,

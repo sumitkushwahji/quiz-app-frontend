@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  defaultUserId: 8,
+  defaultUserId: 3,
 };

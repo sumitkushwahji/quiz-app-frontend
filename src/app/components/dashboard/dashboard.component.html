@@ -1,0 +1,23 @@
+<div class="image-gallery">
+    <img *ngFor="let image of images; let i = index" [src]="image" class="slide-up" [style.animationDelay]="i * 0.3 + 's'">
+  </div>
+  
+  <div class="video-container">
+    <iframe
+      *ngFor="let video of youtubeVideos()"
+      [src]="video | safeUrl"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+  </div>
+  
+  <!-- <div class="playlist-container">
+    <div class="playlist" *ngFor="let playlist of playlists()">
+      <img [src]="playlist.thumbnail" [alt]="playlist.title">
+      <h3>{{ playlist.title }}</h3>
+      <a [href]="'https://www.youtube.com/playlist?list=' + playlist.playlistId" target="_blank">
+        View Playlist
+      </a>
+    </div>
+  </div> -->
+  
